@@ -6,22 +6,17 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Before building project
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. You need to install NPM from `https://nodejs.org` (I am using version 10.4.1)
+2. Go to your terminal run `npm install -g @angular/cli`
+3. Go to the folder `event-app` and run in your terminal `npm install` to get all node modules
+4. Run 'npm start' and navigate to `http://localhost:4200/`.
 
-## Build
+## Vylepsenia, ktore su momentalne v stadiu 'nice to have' 
+- vymazavanie udalosti
+- datum od a datum do sa validuju iba datumy -- pridat validaciu aj na casy + obmedzenie na min datum a max datum (v akom casovom horizonte sa dokazem hybat)
+- sortovanie
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Framework and library
+Na vytvorenie aplikacie som pouzila framework Angular 7, na stylovanie bol pouzity Bootstrap 4.

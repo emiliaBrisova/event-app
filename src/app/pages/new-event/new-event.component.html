@@ -1,0 +1,129 @@
+<div [formGroup]="form">
+  <div *ngIf="!eventId; else eventName" class="title row justify-content-start">
+    <h3 class="col-4 text-right">New event</h3>
+  </div>
+  <ng-template #eventName>
+    <div class="title row justify-content-end">
+      <h5 class="col-4 text-right">Event:</h5>
+      <h3 class="col-8 text-left">{{ form.get('name').value }}</h3>
+    </div>
+  </ng-template>
+
+  <div class="form-group row">
+    <label for="event-name" class="col-4 col-form-label text-right"
+      >* Name of event</label
+    >
+    <input id="event-name" class="form-control col-8" formControlName="name" />
+  </div>
+  <div class="form-group row">
+    <label for="description" class="col-4 col-form-label text-right"
+      >* Event description</label
+    >
+    <textarea
+      id="description"
+      class="form-control col-8"
+      formControlName="description"
+      rows="5"
+    ></textarea>
+  </div>
+
+  <div class="row justify-content-end">
+    <h6 class="col-8 text-center">Event details</h6>
+  </div>
+
+  <div class="form-group row">
+    <label for="address" class="col-4 col-form-label text-right"
+      >* Event location</label
+    >
+    <input id="address" class="form-control col-8" formControlName="address" />
+  </div>
+  <div class="form-group row">
+    <label for="dateFrom" class="col-4 col-form-label text-right"
+      >* Start date and time</label
+    >
+    <input
+      id="dateFrom"
+      type="date"
+      class="form-control col-4"
+      formControlName="dateFrom"
+      [max]="maxDateFrom"
+    />
+    <input
+      type="time"
+      class="form-control col-4"
+      formControlName="timeFrom"
+      [max]="maxTimeFrom"
+    />
+  </div>
+
+  <div class="form-group row">
+    <label for="dateTo" class="col-4 col-form-label text-right"
+      >* End date and time</label
+    >
+    <input
+      id="dateTo"
+      type="date"
+      class="form-control col-4"
+      formControlName="dateTo"
+      [min]="minDateTo"
+    />
+    <input type="time" class="form-control col-4" formControlName="timeTo" [min]="minTimeTo" />
+  </div>
+
+  <div class="form-group row">
+    <label for="numOfGuests" class="col-4 col-form-label text-right"
+      >Number of expected guests</label
+    >
+    <input
+      id="numOfGuests"
+      type="number"
+      min="1"
+      class="form-control col-8"
+      formControlName="numOfGuests"
+    />
+  </div>
+
+  <div class="row justify-content-end">
+    <h6 class="col-8 text-center">Contact person</h6>
+  </div>
+
+  <div formGroupName="contactPerson">
+    <div class="form-group row">
+      <label for="name" class="col-4 col-form-label text-right"
+        >Name and lastname</label
+      >
+      <input id="name" class="form-control col-8" formControlName="name" />
+    </div>
+    <div class="form-group row">
+      <label for="phone" class="col-4 col-form-label text-right"
+        >Telephone number</label
+      >
+      <input
+        id="phone"
+        type="tel"
+        class="form-control col-8"
+        formControlName="phone"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-end">
+    <button
+      *ngIf="!eventId || isEditable"
+      class="col-8 text-center btn btn-success"
+      [disabled]="!(form.valid && form.touched)"
+      (click)="saveEvent()"
+    >
+      <span *ngIf="!eventId; else saveChanges">Create event</span
+      ><ng-template #saveChanges>Save changes</ng-template>
+    </button>
+
+    <button
+      *ngIf="eventId && !isEditable"
+      class="col-8 text-center btn btn-warning"
+      (click)="updateEvent()"
+    >
+      Edit event
+    </button>
+  </div>
+</div>

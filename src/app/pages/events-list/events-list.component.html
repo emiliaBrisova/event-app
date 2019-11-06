@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-12">
+    <ul>
+      <li (click)="setAllEvents()" class="right-border">
+        All events
+      </li>
+      <li (click)="setPlannedEvents()" class="right-border">
+        Planned events
+      </li>
+      <li (click)="setFinishedEvents()" class="right-border">
+        Finished events
+      </li>
+      <li (click)="setEventsInProgress()">
+        Events in progress
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="devider"></div>
+
+<div *ngIf="getEventsToShow().size > 0; else noSelectedEvents" class="table-wrapper">
+  <div>
+    <div class="table-row header-row">
+      <div class="table-col flex-2">Name</div>
+      <div class="table-col flex-2">Address</div>
+      <div class="table-col">Event starts</div>
+      <div class="table-col">Event ends</div>
+    </div>
+    <div>
+      <div
+        *ngFor="let event of getEventsToShow() | keyvalue"
+        routerLink="/event/{{ event.value.id }}"
+        routerLinkActive="true"
+        class="table-row"
+      >
+        <div class="table-col flex-2">{{ event.value.name }}</div>
+        <div class="table-col flex-2">{{ event.value.address }}</div>
+        <div class="table-col">{{ event.value.dateFrom | date:'dd.MM.yyyy' }} {{ event.value.timeFrom }}</div>
+        <div class="table-col">{{ event.value.dateTo | date:'dd.MM.yyyy' }} {{ event.value.timeTo }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #noSelectedEvents>
+  <div class="empty-table">
+      No events match selected category.
+  </div>
+</ng-template>
